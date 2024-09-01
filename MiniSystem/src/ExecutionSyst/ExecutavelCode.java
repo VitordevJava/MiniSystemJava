@@ -1,52 +1,57 @@
 package ExecutionSyst;
 
 import javax.swing.JOptionPane;
-
 import ClasseAluno.Aluno;
+import DisciplinasJava.Disciplinas;
 
 public class ExecutavelCode {
-	public static void main(String[] args) {
-		
-		
-	String Nome = JOptionPane.showInputDialog("Qual seu Nome? ");
-	String idade = JOptionPane.showInputDialog("Qual sua idade");
-	String Universidade = JOptionPane.showInputDialog("Qual sua Universidade? ");
-    String Matricula = JOptionPane.showInputDialog("Qual sua matricula?");
-    String Curso = JOptionPane.showInputDialog("Qual seu curso? ");
-    String nota1 = JOptionPane.showInputDialog("Qual foi sua primeira nota do bimestre? ");
-    String nota2 = JOptionPane.showInputDialog("Qual foi sua segunda nota do bimestre? ");
-    String nota3 = JOptionPane.showInputDialog("Qual foi sua terceira nota do bimestre? ");
-    String nota4 = JOptionPane.showInputDialog("Qual foi sua quarta nota do bimestre? ");
+    public static void main(String[] args) {
 
-    
+        // Coleta de dados do usuário
+        String nome = JOptionPane.showInputDialog("Qual seu Nome?");
+        String idade = JOptionPane.showInputDialog("Qual sua idade?");
+        String universidade = JOptionPane.showInputDialog("Qual sua Universidade?");
+        String matricula = JOptionPane.showInputDialog("Qual sua matricula?");
+        String curso = JOptionPane.showInputDialog("Qual seu curso?");
+        
+        String disciplina1 = JOptionPane.showInputDialog("Qual a disciplina 1?");
+        String nota1 = JOptionPane.showInputDialog("Qual foi sua nota nesta disciplina?");
+        
+        String disciplina2 = JOptionPane.showInputDialog("Qual a disciplina 2?");
+        String nota2 = JOptionPane.showInputDialog("Qual foi sua nota nesta disciplina?");
+        
+        String disciplina3 = JOptionPane.showInputDialog("Qual a disciplina 3?");
+        String nota3 = JOptionPane.showInputDialog("Qual foi sua nota nesta disciplina?");
+        
+        String disciplina4 = JOptionPane.showInputDialog("Qual a disciplina 4?");
+        String nota4 = JOptionPane.showInputDialog("Qual foi sua nota nesta disciplina?");
 
-	Aluno aluno1 = new Aluno();
+        // Configuração do aluno
+        Aluno aluno1 = new Aluno();
+        aluno1.setNome(nome);
+        aluno1.setIdade(Integer.parseInt(idade));
+        aluno1.setUniversidade(universidade);
+        aluno1.setMatricula(matricula);
+        aluno1.setCurso(curso);
+        
+        // Configuração das disciplinas e notas
+        Disciplinas disciplinas = aluno1.getDisciplinas();
+        disciplinas.setDisciplina1(disciplina1);
+        disciplinas.setNota1(Double.parseDouble(nota1));
+        
+        disciplinas.setDisciplina2(disciplina2);
+        disciplinas.setNota2(Double.parseDouble(nota2));
+        
+        disciplinas.setDisciplina3(disciplina3);
+        disciplinas.setNota3(Double.parseDouble(nota3));
+        
+        disciplinas.setDisciplina4(disciplina4);
+        disciplinas.setNota4(Double.parseDouble(nota4));
 
-	aluno1.setNome(Nome);
-	aluno1.setIdade(Integer.valueOf(idade));
-	aluno1.setUniversidade(Universidade);
-	aluno1.setMatricula(Matricula);
-	aluno1.setCurso(Curso);
-	aluno1.setNota1(Double.parseDouble(nota1));
-	aluno1.setNota2(Double.parseDouble(nota2));
-	aluno1.setNota3(Double.parseDouble(nota3));
-	aluno1.setNota4(Double.parseDouble(nota4));
-	aluno1.getMediaFinal();
-	aluno1.getResultado2();
-
-	System.out.println("Nome do aluno : " + aluno1.getNome());
-	System.out.println("Idade do aluno : "+ aluno1.getIdade());
-	System.out.println("Centro de ensino : "+ aluno1.getUniversidade());
-	System.out.println("Matricula : " + aluno1.getMatricula());
-	System.out.println("Curso : " + aluno1.getCurso());
-	System.out.println("Nota 1 : " + aluno1.getNota1());
-	System.out.println("Nota 2 : " + aluno1.getNota2());
-	System.out.println("Nota 3 : " + aluno1.getNota3());
-	System.out.println("Nota 4 : " + aluno1.getNota4());
-
-	
-	JOptionPane.showMessageDialog(null, "Sua media final foi :" + aluno1.getMediaFinal());
-	JOptionPane.showMessageDialog(null, "Resultado :" + aluno1.getResultado2());
-
-	}
+        // Exibição dos resultados
+        System.out.println("Aluno: " + aluno1.toString()); 
+        System.out.println("Disciplinas e resultados" + disciplinas.toString());
+        System.out.println("Media Final: " + aluno1.getMediaFinal());
+        System.out.println("Resultado final: " + aluno1.getResultado2());
+    }
 }

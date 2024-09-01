@@ -1,115 +1,110 @@
 package ClasseAluno;
 
+import java.util.Objects;
+import DisciplinasJava.Disciplinas;
+
 public class Aluno {
-	String Nome;
-	int idade;
-	String Matricula;
-	String Universidade;
-	String Curso;
-	double nota1;
-	double nota2;
-	double nota3;
-	double nota4;
-	double Resultado2;
-	double MediaFinal;
+    String Nome;
+    int idade;
+    String Matricula;
+    String Universidade;
+    double MediaFinal;
+    String Curso;
+    String Resultado2;
+    
+    private Disciplinas disciplinas = new Disciplinas();
+    
+    public void setDisciplinas(Disciplinas disciplinas) {
+        this.disciplinas = disciplinas;
+    }
+    
+    public Disciplinas getDisciplinas() {
+        return disciplinas;
+    }
+    
+    public String getNome() {
+        return Nome;
+    }
+    
+    public void setNome(String nome) {
+        Nome = nome;
+    }
+    
+    public int getIdade() {
+        return idade;
+    }
+    
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
+    
+    public String getMatricula() {
+        return Matricula;
+    }
+    
+    public void setMatricula(String matricula) {
+        Matricula = matricula;
+    }
+    
+    public String getUniversidade() {
+        return Universidade;
+    }
+    
+    public void setUniversidade(String universidade) {
+        Universidade = universidade;
+    }
+    
+    public String getResultado2() {
+        MediaFinal = getMediaFinal();  // Calcular a média final
+        if (MediaFinal >= 70) {
+            return "aprovado";
+        } else {
+            return "reprovado";
+        }
+    }
+    
+    public double getMediaFinal() {
+        return (disciplinas.getNota1() + disciplinas.getNota2() + 
+                disciplinas.getNota3() + disciplinas.getNota4()) / 4;
+    }
+    
+    public void setMediaFinal(double mediaFinal) {
+        MediaFinal = mediaFinal;
+    }
+    
+    public String getCurso() {
+        return Curso;
+    }
+    
+    public void setCurso(String curso) {
+        Curso = curso;
+    }
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(Curso, Matricula, MediaFinal, Nome, Universidade, idade);
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Aluno other = (Aluno) obj;
+        return Objects.equals(Curso, other.Curso) && Objects.equals(Matricula, other.Matricula)
+                && Double.doubleToLongBits(MediaFinal) == Double.doubleToLongBits(other.MediaFinal)
+                && Objects.equals(Nome, other.Nome)
+                && Objects.equals(Universidade, other.Universidade) && idade == other.idade;
+    }
 
-	public void setResultado2(double resultado2) {
-		Resultado2 = resultado2;
+	@Override
+	public String toString() {
+		return "Aluno [Nome=" + Nome + ", idade=" + idade + ", Matricula=" + Matricula + ", Universidade="
+				+ Universidade + ", MediaFinal=" + MediaFinal + ", Curso=" + Curso + ", disciplinas=" + disciplinas
+				+ "]";
 	}
-
-	public void setMediaFinal(double mediaFinal) {
-		MediaFinal = mediaFinal;
-	}
-
-	public String getNome() {
-		return Nome;
-	}
-
-	public void setNome(String nome) {
-		Nome = nome;
-	}
-
-	public int getIdade() {
-		return idade;
-	}
-
-	public void setIdade(int idade) {
-		this.idade = idade;
-	}
-
-	public String getMatricula() {
-		return Matricula;
-	}
-
-	public void setMatricula(String matricula) {
-		Matricula = matricula;
-	}
-
-	public String getUniversidade() {
-		return Universidade;
-	}
-
-	public void setUniversidade(String universidade) {
-		Universidade = universidade;
-	}
-
-	public String getCurso() {
-		return Curso;
-	}
-
-	public void setCurso(String curso) {
-		Curso = curso;
-	}
-
-	public double getNota1() {
-		return nota1;
-	}
-
-	public void setNota1(double nota1) {
-		this.nota1 = nota1;
-	}
-
-	public double getNota2() {
-		return nota2;
-	}
-
-	public void setNota2(double nota2) {
-		this.nota2 = nota2;
-	}
-
-	public double getNota3() {
-		return nota3;
-	}
-
-	public void setNota3(double nota3) {
-		this.nota3 = nota3;
-	}
-
-	public double getNota4() {
-		return nota4;
-	}
-
-	public void setNota4(double nota4) {
-		this.nota4 = nota4;
-	}
-
-	public double getMediaFinal() {
-		return (nota1 + nota2 + nota3 + nota4) / 4;
-
-	}
-
-	/*
-	 * public boolean getResultado() { double Media = this.getMediaFinal(); if
-	 * (Media >= 70) { return true; } else { return false; } }
-	 */
-	public String getResultado2() {
-		double Media = this.getMediaFinal();
-		if (Media >= 70) {
-			return "Parabens vc foi aprovado";
-		} else {
-			return "Uma pena, vc foi reprovado";
-		}
-	}
-
-
+    
 }
