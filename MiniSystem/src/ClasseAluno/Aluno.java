@@ -1,5 +1,7 @@
 package ClasseAluno;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import DisciplinasJava.Disciplinas;
 
@@ -12,17 +14,19 @@ public class Aluno {
     String Curso;
     String Resultado2;
     
-    private Disciplinas disciplinas = new Disciplinas();
+    private List<Disciplinas> disciplinas = new ArrayList<Disciplinas>();
     
-    public void setDisciplinas(Disciplinas disciplinas) {
-        this.disciplinas = disciplinas;
-    }
+
     
-    public Disciplinas getDisciplinas() {
-        return disciplinas;
-    }
-    
-    public String getNome() {
+    public List<Disciplinas> getDisciplinas() {
+		return disciplinas;
+	}
+
+	public void setDisciplinas(List<Disciplinas> disciplinas) {
+		this.disciplinas = disciplinas;
+	}
+
+	public String getNome() {
         return Nome;
     }
     
@@ -64,8 +68,7 @@ public class Aluno {
     }
     
     public double getMediaFinal() {
-        return (disciplinas.getNota1() + disciplinas.getNota2() + 
-                disciplinas.getNota3() + disciplinas.getNota4()) / 4;
+        return 0;
     }
     
     public void setMediaFinal(double mediaFinal) {

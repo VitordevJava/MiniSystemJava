@@ -3,68 +3,31 @@ package DisciplinasJava;
 import java.util.Objects;
 
 public class Disciplinas {
-	String Disciplina1;
-	String Disciplina2;
-	String Disciplina3;
-	String Disciplina4;
-	double nota1;
-	double nota2;
-	double nota3;
-	double nota4;
-	
-	
-	public String getDisciplina1() {
-		return Disciplina1;
+
+	private String Disciplinas;
+	private double notas;
+
+	public String getDisciplinas() {
+		return Disciplinas;
 	}
-	public void setDisciplina1(String disciplina1) {
-		Disciplina1 = disciplina1;
+
+	public void setDisciplinas(String disciplina) {
+		Disciplinas = disciplina;
 	}
-	public String getDisciplina2() {
-		return Disciplina2;
+
+	public double getNotas() {
+		return notas;
 	}
-	public void setDisciplina2(String disciplina2) {
-		Disciplina2 = disciplina2;
+
+	public void setNotas(double nota) {
+		this.notas = nota;
 	}
-	public String getDisciplina3() {
-		return Disciplina3;
-	}
-	public void setDisciplina3(String disciplina3) {
-		Disciplina3 = disciplina3;
-	}
-	public String getDisciplina4() {
-		return Disciplina4;
-	}
-	public void setDisciplina4(String disciplina4) {
-		Disciplina4 = disciplina4;
-	}
-	public double getNota1() {
-		return nota1;
-	}
-	public void setNota1(double nota1) {
-		this.nota1 = nota1;
-	}
-	public double getNota2() {
-		return nota2;
-	}
-	public void setNota2(double nota2) {
-		this.nota2 = nota2;
-	}
-	public double getNota3() {
-		return nota3;
-	}
-	public void setNota3(double nota3) {
-		this.nota3 = nota3;
-	}
-	public double getNota4() {
-		return nota4;
-	}
-	public void setNota4(double nota4) {
-		this.nota4 = nota4;
-	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(Disciplina1, Disciplina2, Disciplina3, Disciplina4, nota1, nota2, nota3, nota4);
+		return Objects.hash(Disciplinas, notas);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -74,19 +37,13 @@ public class Disciplinas {
 		if (getClass() != obj.getClass())
 			return false;
 		Disciplinas other = (Disciplinas) obj;
-		return Objects.equals(Disciplina1, other.Disciplina1) && Objects.equals(Disciplina2, other.Disciplina2)
-				&& Objects.equals(Disciplina3, other.Disciplina3) && Objects.equals(Disciplina4, other.Disciplina4)
-				&& Double.doubleToLongBits(nota1) == Double.doubleToLongBits(other.nota1)
-				&& Double.doubleToLongBits(nota2) == Double.doubleToLongBits(other.nota2)
-				&& Double.doubleToLongBits(nota3) == Double.doubleToLongBits(other.nota3)
-				&& Double.doubleToLongBits(nota4) == Double.doubleToLongBits(other.nota4);
-	}
-	@Override
-	public String toString() {
-		return "Disciplinas [Disciplina1=" + Disciplina1 + ", Disciplina2=" + Disciplina2 + ", Disciplina3="
-				+ Disciplina3 + ", Disciplina4=" + Disciplina4 + ", nota1=" + nota1 + ", nota2=" + nota2 + ", nota3="
-				+ nota3 + ", nota4=" + nota4 + "]";
+		return Objects.equals(Disciplinas, other.Disciplinas)
+				&& Double.doubleToLongBits(notas) == Double.doubleToLongBits(other.notas);
 	}
 
+	@Override
+	public String toString() {
+		return "Disciplinas [Disciplina=" + Disciplinas + ", nota=" + notas + "]";
+	}
 
 }
