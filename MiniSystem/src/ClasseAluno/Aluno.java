@@ -6,88 +6,90 @@ import java.util.Objects;
 import DisciplinasJava.Disciplinas;
 
 public class Aluno {
-    String Nome;
-    int idade;
-    String Matricula;
-    String Universidade;
-    double MediaFinal;
-    String Curso;
-    String Resultado2;
-    
-    private List<Disciplinas> disciplinas = new ArrayList<Disciplinas>();
-    
+    private String nome;
+    private int idade;
+    private String matricula;
+    private String universidade;
+    private String curso;
+    private double mediaFinal;
+    private String resultadoFinal;
 
-    
+    private List<Disciplinas> disciplinas = new ArrayList<>();
+
     public List<Disciplinas> getDisciplinas() {
-		return disciplinas;
-	}
-
-	public void setDisciplinas(List<Disciplinas> disciplinas) {
-		this.disciplinas = disciplinas;
-	}
-
-	public String getNome() {
-        return Nome;
+        return disciplinas;
     }
-    
+
+    public void setDisciplinas(List<Disciplinas> disciplinas) {
+        this.disciplinas = disciplinas;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
     public void setNome(String nome) {
-        Nome = nome;
+        this.nome = nome;
     }
-    
+
     public int getIdade() {
         return idade;
     }
-    
+
     public void setIdade(int idade) {
         this.idade = idade;
     }
-    
+
     public String getMatricula() {
-        return Matricula;
+        return matricula;
     }
-    
+
     public void setMatricula(String matricula) {
-        Matricula = matricula;
+        this.matricula = matricula;
     }
-    
+
     public String getUniversidade() {
-        return Universidade;
+        return universidade;
     }
-    
+
     public void setUniversidade(String universidade) {
-        Universidade = universidade;
+        this.universidade = universidade;
     }
-    
-    public String getResultado2() {
-        MediaFinal = getMediaFinal();  // Calcular a média final
-        if (MediaFinal >= 70) {
-            return "aprovado";
-        } else {
-            return "reprovado";
-        }
-    }
-    
-    public double getMediaFinal() {
-        return 0;
-    }
-    
-    public void setMediaFinal(double mediaFinal) {
-        MediaFinal = mediaFinal;
-    }
-    
+
     public String getCurso() {
-        return Curso;
+        return curso;
     }
-    
+
     public void setCurso(String curso) {
-        Curso = curso;
+        this.curso = curso;
     }
-    
+
+    public double getMediaFinal() {
+        if (disciplinas.isEmpty()) {
+            return 0.0;
+        }
+        double somaNotas = 0.0;
+        for (Disciplinas disciplina : disciplinas) {
+            somaNotas += disciplina.getNotas();
+        }
+        mediaFinal = somaNotas / disciplinas.size();
+        return mediaFinal;
+    }
+
+    public String getResultado2() {
+        if (getMediaFinal() >= 60) {
+            resultadoFinal = "Aprovado";
+        } else {
+            resultadoFinal = "Reprovado";
+        }
+        return resultadoFinal;
+    }
+
     @Override
     public int hashCode() {
-        return Objects.hash(Curso, Matricula, MediaFinal, Nome, Universidade, idade);
+        return Objects.hash(curso, matricula, mediaFinal, nome, universidade, idade);
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -97,17 +99,16 @@ public class Aluno {
         if (getClass() != obj.getClass())
             return false;
         Aluno other = (Aluno) obj;
-        return Objects.equals(Curso, other.Curso) && Objects.equals(Matricula, other.Matricula)
-                && Double.doubleToLongBits(MediaFinal) == Double.doubleToLongBits(other.MediaFinal)
-                && Objects.equals(Nome, other.Nome)
-                && Objects.equals(Universidade, other.Universidade) && idade == other.idade;
+        return Objects.equals(curso, other.curso) && Objects.equals(matricula, other.matricula)
+                && Double.doubleToLongBits(mediaFinal) == Double.doubleToLongBits(other.mediaFinal)
+                && Objects.equals(nome, other.nome) && Objects.equals(universidade, other.universidade)
+                && idade == other.idade;
     }
 
-	@Override
-	public String toString() {
-		return "Aluno [Nome=" + Nome + ", idade=" + idade + ", Matricula=" + Matricula + ", Universidade="
-				+ Universidade + ", MediaFinal=" + MediaFinal + ", Curso=" + Curso + ", disciplinas=" + disciplinas
-				+ "]";
-	}
-    
+    @Override
+    public String toString() {
+        return "Aluno [Nome=" + nome + ", Idade=" + idade + ", Matricula=" + matricula + ", Universidade="
+                + universidade + ", Curso=" + curso + ", Média Final=" + mediaFinal + ", Resultado Final=" + resultadoFinal
+                + ", Disciplinas=" + disciplinas + "]";
+    }
 }
