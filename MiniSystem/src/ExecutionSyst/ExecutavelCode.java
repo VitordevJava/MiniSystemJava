@@ -12,7 +12,7 @@ public class ExecutavelCode {
 
         List<Aluno> alunos = new ArrayList<>();
 
-        for (int qtd = 1; qtd <= 2; qtd++) {  
+        for (int qtd = 1; qtd <= 3; qtd++) {
 
             String nome = JOptionPane.showInputDialog("Qual seu Nome?");
             String idade = JOptionPane.showInputDialog("Qual sua idade?");
@@ -50,6 +50,34 @@ public class ExecutavelCode {
             alunos.add(aluno1);
         }
 
+        //REMOVER UM ALUNO DA LISTA
+        int removerAluno = JOptionPane.showConfirmDialog(null, "Deseja remover algum aluno da lista?");
+        if (removerAluno == 0) {  // SE O USUARIO ESCOLHER "SIM"
+            int continuarRemoverAluno = 0;
+            while (continuarRemoverAluno == 0 && !alunos.isEmpty()) {
+                StringBuilder listaAlunos = new StringBuilder("Lista de alunos:\n");
+                for (int i = 0; i < alunos.size(); i++) {
+                    listaAlunos.append(i + 1).append(". ").append(alunos.get(i).getNome()).append("\n");
+                }
+                String alunoRemover = JOptionPane.showInputDialog(listaAlunos.toString() + "Qual aluno deseja remover? (Escolha o número)");
+
+                // VERIFICA SE O INDICE É VALIDO E REMOVE O ALUNO
+                
+                
+                int index = Integer.parseInt(alunoRemover) - 1;
+                if (index >= 0 && index < alunos.size()) {
+                    alunos.remove(index);
+                    JOptionPane.showMessageDialog(null, "Aluno removido com sucesso!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Número inválido.");
+                }
+
+                continuarRemoverAluno = JOptionPane.showConfirmDialog(null, "Deseja remover mais algum aluno?");
+            }
+        }
+
+        // EXIBIR RESULTADOS
+        
         for (Aluno aluno : alunos) {
             System.out.println("Disciplinas do aluno: " + aluno.getNome());
             for (Disciplinas disciplina : aluno.getDisciplinas()) {
