@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import DisciplinasJava.Disciplinas;
+import StaticClass.ClassesStatus;
 
 public class Aluno {
 	private String nome;
@@ -79,15 +80,14 @@ public class Aluno {
 	public String getResultado2() {
 		if (getMediaFinal() >= 50) {
 			if (getMediaFinal() >= 70)
-				resultadoFinal = "Aprovado";
+				return ClassesStatus.APROVADO;
 			else {
-				resultadoFinal = "Aluno em recuperação";
+				return ClassesStatus.RECUPERAÇÃO;
 
 			}
 		} else {
-			resultadoFinal = "Reprovado";
+			return ClassesStatus.REPROVADO;
 		}
-		return resultadoFinal;
 	}
 
 	@Override

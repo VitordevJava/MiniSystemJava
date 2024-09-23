@@ -5,12 +5,16 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import ClasseAluno.Aluno;
 import DisciplinasJava.Disciplinas;
+import StaticClass.ClassesStatus;
 
 public class ExecutavelCode {
 
     public static void main(String[] args) {
 
         List<Aluno> alunos = new ArrayList<>();
+        List<Aluno> aprovados = new ArrayList<>();
+        List<Aluno> reprovados = new ArrayList<>();
+        List<Aluno> recuperacao = new ArrayList<>();
 
         for (int qtd = 1; qtd <= 3; qtd++) {
 
@@ -18,14 +22,14 @@ public class ExecutavelCode {
             String idade = JOptionPane.showInputDialog("Qual sua idade?");
             String universidade = JOptionPane.showInputDialog("Qual sua Universidade?");
             String matricula = JOptionPane.showInputDialog("Qual sua matricula?");
-            String curso = JOptionPane.showInputDialog("Qual seu curso?");
+            String curso = JOptionPane.showInputDialog("Qual seu curso?"); 
 
             Aluno aluno1 = new Aluno();
             aluno1.setNome(nome);
             aluno1.setIdade(Integer.parseInt(idade));
             aluno1.setUniversidade(universidade);
             aluno1.setMatricula(matricula);
-            aluno1.setCurso(curso);
+            aluno1.setCurso(curso); 
 
             for (int pos = 1; pos <= 4; pos++) {
                 String nomeDisciplina = JOptionPane.showInputDialog("Qual o nome da disciplina? " + pos + " ");
@@ -61,9 +65,6 @@ public class ExecutavelCode {
                 }
                 String alunoRemover = JOptionPane.showInputDialog(listaAlunos.toString() + "Qual aluno deseja remover? (Escolha o número)");
 
-                // VERIFICA SE O INDICE É VALIDO E REMOVE O ALUNO
-                
-                
                 int index = Integer.parseInt(alunoRemover) - 1;
                 if (index >= 0 && index < alunos.size()) {
                     alunos.remove(index);
@@ -76,19 +77,34 @@ public class ExecutavelCode {
             }
         }
 
-        // EXIBIR RESULTADOS
-        
+        // CLASSIFICAR OS ALUNOS
         for (Aluno aluno : alunos) {
-            System.out.println("Disciplinas do aluno: " + aluno.getNome());
-            for (Disciplinas disciplina : aluno.getDisciplinas()) {
-                System.out.println(disciplina.getDisciplina() + " - Nota: " + disciplina.getNotas());
+            String resultado = aluno.getResultado2();
+            if (resultado.equals(ClassesStatus.APROVADO)) {
+                aprovados.add(aluno);
+            } else if (resultado.equals(ClassesStatus.REPROVADO)) {
+                reprovados.add(aluno);
+            } else if (resultado.equals(ClassesStatus.RECUPERAÇÃO)) {
+                recuperacao.add(aluno);
             }
-
-            System.out.println("\nInformações do Aluno:");
-            System.out.println(aluno);
-            System.out.println("Média Final: " + aluno.getMediaFinal());
-            System.out.println("Resultado Final: " + aluno.getResultado2());
-            System.out.println("---------------------------------------------------------------------------------------------");
         }
+
+        // EXIBIR RESULTADOS CLASSIFICADOS
+        System.out.println("Lista de Alunos Aprovados:");
+        for (Aluno aluno : aprovados) {
+            System.out.println(aluno.getNome() + " - Média: " + aluno.getMediaFinal());
+        }
+
+        System.out.println("\nLista de Alunos Reprovados:");
+        for (Aluno aluno : reprovados) {
+            System.out.println(aluno.getNome() + " - Média: " + aluno.getMediaFinal());
+        }
+
+        System.out.println("\nLista de Alunos em Recuperação:");
+        for (Aluno aluno : recuperacao) {
+            System.out.println(aluno.getNome() + " - Média: " + aluno.getMediaFinal());
+        }
+        
+        System.out.println("---------------------------------------------------------------------------------------------");
     }
 }
