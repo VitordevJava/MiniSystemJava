@@ -3,6 +3,8 @@ package ExecutionSyst;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+
 import javax.swing.JOptionPane;
 import ClasseAluno.Aluno;
 import DisciplinasJava.Disciplinas;
@@ -11,11 +13,27 @@ import StaticClass.ClassesStatus;
 public class ExecutavelCode {
 
     public static void main(String[] args) {
+    	
+    	
+     
+    	String Usuario = JOptionPane.showInputDialog("Qual seu usuario?");
+    	String Senha = JOptionPane.showInputDialog("Qual sua senha?");
+    	
+    	if (Usuario.equalsIgnoreCase("Admin") && Senha.equalsIgnoreCase("1234")) {
+    		System.out.println("Acesso permitido");
+    		
+    	}else {
+    		System.out.println("Acesso negado!");
+    		 System.exit(0);
+    	}
+    
+    	
 
         List<Aluno> alunos = new ArrayList<>();
         HashMap<String, List<Aluno>> maps = new HashMap<>();
 
-        // Inicializa os mapas para classificação
+        // INICIALIZA OS MAPAS PARA AS CLASSIFICAÇÕES
+        
         maps.put(ClassesStatus.APROVADO, new ArrayList<Aluno>());
         maps.put(ClassesStatus.RECUPERAÇÃO, new ArrayList<Aluno>());
         maps.put(ClassesStatus.REPROVADO, new ArrayList<Aluno>());
@@ -23,18 +41,18 @@ public class ExecutavelCode {
         for (int qtd = 1; qtd <= 3; qtd++) {
 
             String nome = JOptionPane.showInputDialog("Qual seu Nome?");
-            /* String idade = JOptionPane.showInputDialog("Qual sua idade?");
+            String idade = JOptionPane.showInputDialog("Qual sua idade?");
             String universidade = JOptionPane.showInputDialog("Qual sua Universidade?");
             String matricula = JOptionPane.showInputDialog("Qual sua matricula?");
-            String curso = JOptionPane.showInputDialog("Qual seu curso?"); */
+            String curso = JOptionPane.showInputDialog("Qual seu curso?"); 
 
             Aluno aluno1 = new Aluno();
             aluno1.setNome(nome);
 
-            /* aluno1.setIdade(Integer.parseInt(idade));
+            aluno1.setIdade(Integer.parseInt(idade));
             aluno1.setUniversidade(universidade);
             aluno1.setMatricula(matricula);
-            aluno1.setCurso(curso); */
+            aluno1.setCurso(curso); 
 
             for (int pos = 1; pos <= 4; pos++) {
                 String nomeDisciplina = JOptionPane.showInputDialog("Qual o nome da disciplina? " + pos + " ");
@@ -47,11 +65,11 @@ public class ExecutavelCode {
                     aluno1.getDisciplinas().add(disciplina);
                 } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(null, "Nota inválida, por favor insira um número.");
-                    pos--;  // Repetir a entrada para essa disciplina
+                    pos--;  // REPETIR A ENTRADA PARA ESSA DISCIPLINA
                 }
             }
 
-            // Remover disciplinas
+            // REMOVER ALGUMA DISCIPLINA
             int escolha = JOptionPane.showConfirmDialog(null, "Deseja remover alguma disciplina?");
             if (escolha == 0) {
                 int continuarRemover = 0;
@@ -74,7 +92,8 @@ public class ExecutavelCode {
             alunos.add(aluno1);
         }
 
-        // Remover aluno
+        // REMOVER UM ALUNO
+        
         int removerAluno = JOptionPane.showConfirmDialog(null, "Deseja remover algum aluno da lista?");
         if (removerAluno == 0 && !alunos.isEmpty()) {
             int continuarRemoverAluno = 0;
@@ -102,7 +121,8 @@ public class ExecutavelCode {
             }
         }
 
-        // Classificar os alunos
+        // CLASSIFICAR OS ALUNOS
+        
         for (Aluno aluno : alunos) {
             String resultado = aluno.getResultado2();
             if (resultado.equals(ClassesStatus.APROVADO)) {
@@ -114,7 +134,8 @@ public class ExecutavelCode {
             }
         }
 
-        // Exibir resultados classificados
+        // EXIBIR RESULTADOS CLASSIFICADOS
+        
         System.out.println("Lista de Alunos Aprovados:");
         for (Aluno aluno : maps.get(ClassesStatus.APROVADO)) {
             System.out.println(aluno.getNome() + " - Média: " + aluno.getMediaFinal());
